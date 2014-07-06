@@ -51,7 +51,7 @@ class RecipientPush implements RecipientPushInterface
     /**
      * @return string
      */
-    public function getIdentity()
+    public function getIdentity($media = null)
     {
         $data = sprintf('%s:%s', $this->url, $this->method);
         

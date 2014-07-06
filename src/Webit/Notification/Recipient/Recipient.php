@@ -43,8 +43,18 @@ class Recipient implements RecipientEmailInterface, RecipientPhoneInterface
      * 
      * @return string
      */
-    public function getIdentity()
+    public function getIdentity($media = null)
     {
+       switch ($media) {
+           case 'email':
+               return $this->getEmail();
+               break;
+           case 'sms':
+           case 'phone':
+               return $this->getPhoneNo();
+               break;
+       }
+       
        $data = sprintf('%s:%s:%s', $this->name, $this->email, $this->phoneNo);
        return hash('md5', $data);
     }

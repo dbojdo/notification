@@ -12,5 +12,5 @@ interface RecipientInterface
     /**
      * @return mixed
      */
-    public function getIdentity();
+    public function getIdentity($media = null);
 }

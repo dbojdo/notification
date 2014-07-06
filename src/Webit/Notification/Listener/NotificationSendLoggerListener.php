@@ -62,7 +62,7 @@ class NotificationSendLoggerListener implements EventSubscriberInterface
 	    
 	    $log = $this->notificationLogRepo->createNotificationLog();
     	    $log->setMedia($event->getMedia());
-    	    $log->setRecipientIdentity($recipient->getIdentity());
+    	    $log->setRecipientIdentity($recipient->getIdentity($media));
     	    $log->setNotificationTypeName($notification->getType());
     	    $log->setNotificationHash($notification->getHash());
     	

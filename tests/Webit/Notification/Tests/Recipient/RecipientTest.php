@@ -21,7 +21,9 @@ class RecipientTest extends \PHPUnit_Framework_TestCase
     public function shouldBeIdentifable()
     {
         $recipient = new Recipient(self::RECIPIENT_NAME, self::RECIPIENT_EMAIL, self::RECIPIENT_PHONE_NO);
-        $this->assertNotEmpty($recipient->getIdentity());
+        foreach (array(null, 'email', 'sms', 'phone') as $media) {
+            $this->assertNotEmpty($recipient->getIdentity($media));
+        }
     }
     
     /**
