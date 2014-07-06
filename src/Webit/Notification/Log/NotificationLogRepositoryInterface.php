@@ -28,7 +28,8 @@ interface NotificationLogRepositoryInterface
      * 
      * @param NotificationInterface $notification
      * @param RecipientInterface $recipient
+     * @param string $media
      * @return NotificationLogInterface
      */
-    public function getLastNotification(NotificationInterface $notification, RecipientInterface $recipient);
+    public function getLastNotification(NotificationInterface $notification, RecipientInterface $recipient, $media);
 }

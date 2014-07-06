@@ -74,7 +74,7 @@ class Notifier implements NotifierInterface
             
             /** @var RecipientInterface $recipient */
             foreach ($recipients as $recipient) {
-                $event = new NotificationSendEvent($notification, $recipient);
+                $event = new NotificationSendEvent($notification, $recipient, $mediaAdapter->getMedia());
                 $this->eventDispatcher->dispatch(Events::PRE_NOTIFCATION_SEND, $event);
                 
                 if ($event->getPreventSend() == false) {
@@ -87,7 +87,7 @@ class Notifier implements NotifierInterface
                     }
                 }
                 
-                $event = new NotificationSendEvent($notification, $recipient, $event->getPreventSend());
+                $event = new NotificationSendEvent($notification, $recipient, $mediaAdapter->getMedia(), $event->getPreventSend());
                 $this->eventDispatcher->dispatch(Events::POST_NOTIFCATION_SEND, $event);
             }
         }

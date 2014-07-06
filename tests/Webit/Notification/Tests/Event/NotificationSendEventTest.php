@@ -19,11 +19,13 @@ class NotificationSendEventTest extends \PHPUnit_Framework_TestCase
     {
         $notification = $this->getMock('Webit\Notification\Notification\NotificationInterface');
         $recipient = $this->getMock('Webit\Notification\Recipient\RecipientInterface');
+        $media = 'email';
         
-        $event = new NotificationSendEvent($notification, $recipient, true);
+        $event = new NotificationSendEvent($notification, $recipient, $media, true);
         
         $this->assertSame($notification, $event->getNotification());
         $this->assertSame($recipient, $event->getRecipient());
+        $this->assertEquals($media, $event->getMedia());
         $this->assertTrue($event->getPreventSend());
     }
     

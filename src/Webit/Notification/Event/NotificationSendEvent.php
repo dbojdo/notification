@@ -27,6 +27,12 @@ class NotificationSendEvent extends Event
     
     /**
      * 
+     * @var string
+     */
+    private $media;
+    
+    /**
+     * 
      * @var bool
      */
     private $preventSend;
@@ -37,10 +43,11 @@ class NotificationSendEvent extends Event
      * @param RecipientInterface $recipient
      * @param bool $preventSend
      */
-    public function __construct(NotificationInterface $notification, RecipientInterface $recipient, $preventSend = false)
+    public function __construct(NotificationInterface $notification, RecipientInterface $recipient, $media, $preventSend = false)
     {
         $this->notification = $notification;
         $this->recipient = $recipient;
+        $this->media = $media;
         $this->setPreventSend($preventSend);
     }
     
@@ -60,6 +67,14 @@ class NotificationSendEvent extends Event
     public function getRecipient()
     {
         return $this->recipient;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getMedia()
+    {
+        return $this->media;
     }
     
     /**
