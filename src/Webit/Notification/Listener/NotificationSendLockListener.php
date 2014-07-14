@@ -7,7 +7,7 @@ use Webit\Notification\Event\NotifyEvent;
 use Webit\Notification\Event\Events;
 use Webit\Notification\Lock\NotificationLockRepositoryInterface;
 
-class NotifyLockListener implements EventSubscriberInterface
+class NotificationSendLockListener implements EventSubscriberInterface
 {
     /**
      * 
@@ -39,8 +39,9 @@ class NotifyLockListener implements EventSubscriberInterface
      * @return array The event names to listen to
      *
      * @api
+     * @codeCoverageIgnore
      */
-	public function getSubscribedEvents() {
+	public static function getSubscribedEvents() {
 		return array(Events::PRE_NOTIFY => 'onPreNotify');
 	}
 

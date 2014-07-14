@@ -37,10 +37,10 @@ class NotificationSendLoggerListener implements EventSubscriberInterface
      *  * array('eventName' => array(array('methodName1', $priority), array('methodName2'))
      *
      * @return array The event names to listen to
-     *
+     * @codeCoverageIgnore
      * @api
      */
-	public function getSubscribedEvents() {
+	public static function getSubscribedEvents() {
 		return array(Events::POST_NOTIFCATION_SEND => 'onNotificationSend');
 	}
 
@@ -55,13 +55,14 @@ class NotificationSendLoggerListener implements EventSubscriberInterface
 	    $notification = $event->getNotification();
 	    $recipient = $event->getRecipient();
 	    $preventSend = $event->getPreventSend();
-
+        $media = $event->getMedia();
+        
 	    if ($preventSend) {
 	        return;
 	    }
 	    
 	    $log = $this->notificationLogRepo->createNotificationLog();
-    	    $log->setMedia($event->getMedia());
+    	    $log->setMedia($media);
     	    $log->setRecipientIdentity($recipient->getIdentity($media));
     	    $log->setNotificationTypeName($notification->getType());
     	    $log->setNotificationHash($notification->getHash());

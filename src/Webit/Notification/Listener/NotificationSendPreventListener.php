@@ -46,7 +46,7 @@ class NotificationSendPreventListener implements EventSubscriberInterface
      *  * array('eventName' => array(array('methodName1', $priority), array('methodName2'))
      *
      * @return array The event names to listen to
-     *
+     * @codeCoverageIgnore
      * @api
      */
 	public function getSubscribedEvents() {
